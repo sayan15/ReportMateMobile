@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:headerMonthTextAppearance">@style/HeaderTextStyle</item>
+    </style>
+    <style name="HeaderTextStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="CustomDatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:datePickerStyle">@style/HeaderTextStyle</item>
+    </style>
+
+    <style name="TimePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:headerBackground">@style/HeaderTextStyleTimer</item>
+    </style>
+
+    <style name="HeaderTextStyleTimer" parent="@android:style/TextAppearance.Medium">
+        <item name="android:headerBackground">@color/black</item>
+    </style>
+</resources>

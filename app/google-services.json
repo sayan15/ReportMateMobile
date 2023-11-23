@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "327443911451",
+    "firebase_url": "https://reportmate-54c39-default-rtdb.firebaseio.com",
+    "project_id": "reportmate-54c39",
+    "storage_bucket": "reportmate-54c39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327443911451:android:1851e43c75683e1a1c79be",
+        "android_client_info": {
+          "package_name": "com.example.reportmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfc-u957W5s5xC-s5gFNCpI1eNUiws14s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

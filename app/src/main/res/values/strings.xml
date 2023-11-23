@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ReportMate</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_logo_description">Logo</string>
+    <string name="welcome_btn">submit report</string>
+    <string name="welcome_message">Welcome to ReportMate, the reporting app for violence or crimes against public. you can submit a report else should you wish to direct response to what has happened, please contact the police on 101</string>
+    <string name="submit_report_firstmessage">Let\'s get started</string>
+    <string name="question_1">Location</string>
+    <string name="q1_ans_1">current location</string>
+    <string name="q1_ans_2">select location</string>
+    <string name="question_2">Date and Time</string>
+    <string name="q2_ans_1">now</string>
+    <string name="q2_ans_2">select time</string>
+    <string name="time">Time</string>
+    <string name="timeformat">00:00</string>
+    <string name="map_id">a8377c51520d419e</string>
+</resources>
