@@ -1,22 +1,36 @@
 package com.example.reportmate.viewmodel
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.reportmate.model.ReadAndWrite
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import androidx.lifecycle.viewModelScope
+import com.example.reportmate.model.PushNotification
+import com.example.reportmate.network.ApiManager
+import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainViewModel:ViewModel() {
+
     var resultMutableLiveData=MutableLiveData<Boolean>();
     var resultLiveData:LiveData<Boolean> =resultMutableLiveData;
-    fun computation(var1:Int,var2:Int){
-        val add=var1+var2
-        resultMutableLiveData.value=add <=100
+
+
+
+    fun subscribeToNewTopic(topicInput: String, callback: TopicCallback) {
+        FirebaseMessaging.getInstance().subscribeToTopic(topicInput)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    callback.onSubscribed()
+                    println("successfully subscribed to the topic")
+                } else {
+                    println("failed to subscribe to the topic")
+                }
+            }
+            .addOnFailureListener {
+                println("failed to subscribe to the topic : ${it.message}")
+            }
     }
-
-
 }
+

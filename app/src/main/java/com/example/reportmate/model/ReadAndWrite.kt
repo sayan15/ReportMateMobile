@@ -3,6 +3,8 @@ package com.example.reportmate.model
 import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
+import androidx.lifecycle.ViewModelProvider
+import com.example.reportmate.viewmodel.MainViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -14,6 +16,7 @@ import java.time.LocalDateTime
 class ReadAndWrite {
     private lateinit var database:DatabaseReference
     private lateinit var storage :StorageReference
+
     fun initializeDbRef() {
         // [START initialize_database_ref]
         database = Firebase.database.getReference("Incidents")
@@ -97,6 +100,7 @@ class ReadAndWrite {
                 if (task.isSuccessful) {
                     // Data was successfully inserted
                     onComplete(true, newIncidentKey)
+
                 } else {
                     // Data insertion failed
                     onComplete(false,null)

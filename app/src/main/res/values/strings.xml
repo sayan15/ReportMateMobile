@@ -28,4 +28,5 @@
     <string name="select_images_from_gallery">Select Images</string>
     <string name="upload_images">Upload Images</string>
     <string name="discard">Discard</string>
+    <string name="msg_token_fmt">Firebase Token: %1$s</string>
 </resources>

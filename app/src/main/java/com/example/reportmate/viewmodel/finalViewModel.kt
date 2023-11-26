@@ -1,17 +1,23 @@
 package com.example.reportmate.viewmodel
 
+import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.example.reportmate.model.NotificationData
+import com.example.reportmate.model.PushNotification
 import com.example.reportmate.model.ReadAndWrite
+import com.example.reportmate.network.ApiManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class finalViewModel:ViewModel() {
     var resultMutableLiveData= MutableLiveData<Boolean>();
     var resultLiveData: LiveData<Boolean> =resultMutableLiveData;
+    // ViewModel
+    private val apiManager = ApiManager()
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun insertData(
@@ -46,10 +52,24 @@ class finalViewModel:ViewModel() {
             if (isSuccess) {
                 // Data was successfully inserted
                 onComplete(true,newIncidentKey)
+                PushNotification(
+                    NotificationData(crimeType, (" happened at $title")),
+                    "/topics/incidents"
+                ).also {
+                    //Todo explain you can do foreach topic send notification
+
+                    sendNewMessage(it)
+                }
             } else {
                 // Data insertion failed
                 onComplete(false,null)
             }
+        }
+    }
+
+    fun sendNewMessage(notification: PushNotification) {
+        viewModelScope.launch(Dispatchers.IO) {
+            apiManager.postNotification(notification)
         }
     }
 
