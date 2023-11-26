@@ -1,27 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".view.fragments.SubmitReportFragment"
-    android:background="@drawable/gradient"
-    android:layout_marginTop="20dp">
-
-    <!-- First CardView -->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/submit_report_firstmessage"
-        android:textAlignment="textStart"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:textColor="@color/black"/>
+    android:fillViewport="true">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".view.fragments.SubmitReportFragment"
+        android:background="@drawable/gradient"
+        android:layout_marginTop="20dp">
+
+        <!-- Navigation Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="start">
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="back"
+                android:textSize="18sp"
+                android:layout_gravity="start"
+                android:layout_marginEnd="8dp"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:textSize="18sp"
+                android:layout_gravity="start"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_report_firstmessage"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -59,92 +93,123 @@
                     android:textSize="15sp"
                     android:textColor="@color/black"/>
             </RadioGroup>
-        </LinearLayout>
-
-    <!-- Second CardView -->
-
-    <LinearLayout
-        android:layout_width="379dp"
-        android:layout_height="468dp"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/question_2"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <RadioGroup
-            android:id="@+id/grp_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
-
-            <RadioButton
-                android:id="@+id/radioButtonOption1grp2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/q2_ans_1"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="normal" />
-
-            <RadioButton
-                android:id="@+id/radioButtonOption2grp2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/q2_ans_2"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="normal" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_gravity="center"
                 android:padding="16dp"
-                android:id="@+id/timePicker"
+                android:id="@+id/locationContainer"
                 android:visibility="gone">
+
                 <TextView
-                    android:layout_width="0dp"
+                    android:id="@+id/selectTextView"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/time"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:textAlignment="viewStart"/>
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="@string/selectaddress"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
                 <TextView
-                    android:id="@+id/timesetter"
-                    android:layout_width="0dp"
+                    android:id="@+id/rightArrowTextView"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/timeformat"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:textAlignment="viewEnd"/>
+                    android:layout_marginStart="16dp"
+                    android:layout_toRightOf="@id/selectTextView"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text=">"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
             </LinearLayout>
-            <DatePicker
-                android:id="@+id/datePicker"
+
+        </LinearLayout>
+
+        <!-- Second CardView -->
+        <LinearLayout
+            android:layout_width="379dp"
+            android:layout_height="468dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/question_2"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/grp_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:calendarViewShown="false"
-                android:scrollbarStyle="outsideOverlay"
-                android:spinnersShown="true"
-                android:visibility="gone"
-                android:descendantFocusability="blocksDescendants"
-                android:headerBackground="@color/cardview_shadow_end_color"
-                style="@style/MyDatePickerStyle"
-                android:datePickerMode="calendar"
-                />
+                android:layout_marginBottom="10dp">
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radioButtonOption1grp2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/q2_ans_1"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
 
+                <RadioButton
+                    android:id="@+id/radioButtonOption2grp2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/q2_ans_2"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:id="@+id/timePicker"
+                    android:visibility="gone">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/time"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textAlignment="viewStart"/>
+                    <TextView
+                        android:id="@+id/timesetter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/timeformat"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textAlignment="viewEnd"/>
+                </LinearLayout>
+                <DatePicker
+                    android:id="@+id/datePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:calendarViewShown="false"
+                    android:scrollbarStyle="outsideOverlay"
+                    android:spinnersShown="true"
+                    android:visibility="gone"
+                    android:descendantFocusability="blocksDescendants"
+                    android:headerBackground="@color/cardview_shadow_end_color"
+                    style="@style/MyDatePickerStyle"
+                    android:datePickerMode="spinner"
+                    />
+
+            </RadioGroup>
+
+        </LinearLayout>
 
     </LinearLayout>
-
-
-</LinearLayout>
+</ScrollView>

@@ -15,4 +15,17 @@
     <string name="time">Time</string>
     <string name="timeformat">00:00</string>
     <string name="map_id">a8377c51520d419e</string>
+    <string name="selectaddress">Select</string>
+    <string name="back_btn">Home</string>
+    <string name="summary">Summary</string>
+    <string name="when">When ?</string>
+    <string name="where">Where ?</string>
+    <string name="enter_phone_number">Enter phone Number?</string>
+    <string name="enter_description">Enter Description</string>
+    <string name="type">Type ?</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="select_images_from_gallery">Select Images</string>
+    <string name="upload_images">Upload Images</string>
+    <string name="discard">Discard</string>
 </resources>

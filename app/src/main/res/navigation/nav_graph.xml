@@ -31,10 +31,37 @@
         <action
             android:id="@+id/action_submitReportFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_submitReportFragment_to_finalFragment"
+            app:destination="@id/finalFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.reportmate.view.fragments.MapFragment"
         android:label="fragment_map"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_mapFragment_to_submitReportFragment3"
+            app:destination="@id/submitReportFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finalFragment"
+        android:name="com.example.reportmate.view.fragments.FinalFragment"
+        android:label="FinalFragment" >
+        <action
+            android:id="@+id/action_finalFragment_to_submitReportFragment"
+            app:destination="@id/submitReportFragment" />
+        <action
+            android:id="@+id/action_finalFragment_to_selectImagesFragment"
+            app:destination="@id/selectImagesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectImagesFragment"
+        android:name="com.example.reportmate.view.fragments.SelectImagesFragment"
+        android:label="fragment_select_images"
+        tools:layout="@layout/fragment_select_images" >
+        <action
+            android:id="@+id/action_selectImagesFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
 </navigation>
