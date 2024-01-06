@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.AlertDialog
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +13,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         )
         // Initialize mainViewModel
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
         // Subscribe to topic incidents
         val topicOnStart = "incidents"
         mainViewModel.subscribeToNewTopic(topicOnStart, object : TopicCallback {
@@ -83,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         .setNegativeButton("No thanks") { _, _ ->
                             // User clicked No thanks, handle accordingly (e.g., continue without notifications)
-                            showToast("You chose not to enable notifications.")
+                            showToast("You choose not to enable notifications.")
                         }
 
                     // Create and show the dialog
@@ -110,4 +112,6 @@ class MainActivity : AppCompatActivity() {
         // Show a toast message
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
+
 }

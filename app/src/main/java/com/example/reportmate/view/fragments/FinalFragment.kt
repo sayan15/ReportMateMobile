@@ -21,6 +21,7 @@ import com.example.reportmate.model.latitudeLongitude
 import com.example.reportmate.viewmodel.SubmitReportViewModel
 import com.example.reportmate.viewmodel.finalViewModel
 import com.google.android.gms.maps.model.LatLng
+import kotlin.math.log
 
 
 class FinalFragment : Fragment() {
@@ -82,35 +83,60 @@ class FinalFragment : Fragment() {
         binding.submitbtn.setOnClickListener {
             // Initialize ViewModel
             viewModel = ViewModelProvider(this).get(finalViewModel::class.java)
-            val cleanedPhoneNumber = binding.phoneNumberEditText.text.toString().replace("\\D".toRegex(), "")
-            val numericPhone = if (cleanedPhoneNumber.isNotEmpty()) cleanedPhoneNumber.toLong() else 0L
 
-
-            viewModel.insertData(binding.textView2.text.toString(), latLng?.latitude,latLng?.longitude,binding.descriptionEditText.text.toString(),binding.textView1.text.toString(),0,"no",binding.crimeTypeSpinner.selectedItem.toString(),numericPhone.toInt(),""){ isSuccess,newIncidentKey ->
-                if (isSuccess) {
-                    Toast.makeText(context, "Info: You have submitted your report successfully", Toast.LENGTH_SHORT).apply {
-                        setGravity(Gravity.CENTER, 0, 0)
-                        view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
-                        show()
-                    }
-                    //pass the data inserted key
-                    val bundle = Bundle()
-                    bundle.putString("key_value", newIncidentKey)
-                    navController.navigate(R.id.action_finalFragment_to_selectImagesFragment,bundle)
-                } else {
-                    Toast.makeText(context, "Error: Unable to submit your report", Toast.LENGTH_SHORT).apply {
-                        setGravity(Gravity.CENTER, 0, 0)
-                        view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
-                        show()
+            val cleanedPhoneNumber = binding.phoneNumberEditText.text.toString()
+            var numericPhone = 0L;
+            if (cleanedPhoneNumber.isNotEmpty()) {
+                try {
+                    numericPhone=cleanedPhoneNumber.toLong()
+                } catch (e: NumberFormatException) {
+                    print(e.message)
+                }
+            } else {
+                0 // Default value for empty string
+            }
+            if(isValidUKPhoneNumber(numericPhone))
+            {
+                viewModel.insertData(binding.textView2.text.toString(), latLng?.latitude,latLng?.longitude,binding.descriptionEditText.text.toString(),binding.textView1.text.toString(),0,"Reported",binding.crimeTypeSpinner.selectedItem.toString(),numericPhone,""){ isSuccess,newIncidentKey ->
+                    if (isSuccess) {
+                        Toast.makeText(context, "Info: You have submitted your report successfully", Toast.LENGTH_SHORT).apply {
+                            setGravity(Gravity.CENTER, 0, 0)
+                            view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+                            show()
+                        }
+                        //pass the data inserted key
+                        val bundle = Bundle()
+                        bundle.putString("key_value", newIncidentKey)
+                        navController.navigate(R.id.action_finalFragment_to_selectImagesFragment,bundle)
+                    } else {
+                        Toast.makeText(context, "Error: Unable to submit your report", Toast.LENGTH_SHORT).apply {
+                            setGravity(Gravity.CENTER, 0, 0)
+                            view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+                            show()
+                        }
                     }
                 }
+            }else{
+                Toast.makeText(context, "Error: Please provide your phone number for the refernce", Toast.LENGTH_SHORT).apply {
+                    setGravity(Gravity.CENTER, 0, 0)
+                    view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    show()
+                }
             }
+
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun isValidUKPhoneNumber(phoneNumber: Long): Boolean {
+        val numberAsString = phoneNumber.toString()
+        val regex = "^\\d{10,11}\$".toRegex()
+
+        return numberAsString.matches(regex)
     }
 
 }

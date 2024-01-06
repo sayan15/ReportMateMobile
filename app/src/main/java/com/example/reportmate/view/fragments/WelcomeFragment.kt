@@ -43,6 +43,14 @@ class WelcomeFragment : Fragment() {
             navController.navigate(R.id.action_welcomeFragment_to_submitReportFragment)
         }
 
+        binding.discardBtn.setOnClickListener {
+            requireActivity().finish()
+        }
+
+        binding.viewReportsBtn.setOnClickListener {
+            navController.navigate(R.id.action_welcomeFragment_to_viewReports)
+        }
+
     }
     override fun onDestroyView() {
         super.onDestroyView()

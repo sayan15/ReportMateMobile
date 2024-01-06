@@ -20,7 +20,7 @@
     <string name="summary">Summary</string>
     <string name="when">When ?</string>
     <string name="where">Where ?</string>
-    <string name="enter_phone_number">Enter phone Number?</string>
+    <string name="enter_phone_number">Enter phonenumber</string>
     <string name="enter_description">Enter Description</string>
     <string name="type">Type ?</string>
     <string name="previous">Previous</string>
@@ -28,5 +28,9 @@
     <string name="select_images_from_gallery">Select Images</string>
     <string name="upload_images">Upload Images</string>
     <string name="discard">Discard</string>
+    <string name="skip">Skip</string>
     <string name="msg_token_fmt">Firebase Token: %1$s</string>
+    <string name="viewreports">View Reports</string>
+    <string name="search">Search</string>
+    <string name="your_reports">Your Reports</string>
 </resources>

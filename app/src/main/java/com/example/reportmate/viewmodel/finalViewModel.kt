@@ -8,6 +8,7 @@ import com.example.reportmate.model.NotificationData
 import com.example.reportmate.model.PushNotification
 import com.example.reportmate.model.ReadAndWrite
 import com.example.reportmate.network.ApiManager
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -29,7 +30,7 @@ class finalViewModel:ViewModel() {
         officerId: Int,
         status: String,
         crimeType: String,
-        phone: Int,
+        phone: Long,
         updatedAt: String,
         onComplete: (Boolean,String?) -> Unit
     ) {
@@ -53,7 +54,7 @@ class finalViewModel:ViewModel() {
                 // Data was successfully inserted
                 onComplete(true,newIncidentKey)
                 PushNotification(
-                    NotificationData(crimeType, (" happened at $title")),
+                    NotificationData(crimeType, (" happened at $title"), LatLng(latitude!!,longitude!!)),
                     "/topics/incidents"
                 ).also {
                     //Todo explain you can do foreach topic send notification

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_welcomeFragment_to_submitReportFragment"
             app:destination="@id/submitReportFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_viewReports"
+            app:destination="@id/viewReports" />
     </fragment>
     <fragment
         android:id="@+id/submitReportFragment"
@@ -34,6 +37,9 @@
         <action
             android:id="@+id/action_submitReportFragment_to_finalFragment"
             app:destination="@id/finalFragment" />
+        <action
+            android:id="@+id/action_submitReportFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -62,6 +68,14 @@
         tools:layout="@layout/fragment_select_images" >
         <action
             android:id="@+id/action_selectImagesFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewReports"
+        android:name="com.example.reportmate.model.viewReports"
+        android:label="viewReports" >
+        <action
+            android:id="@+id/action_viewReports_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
     </fragment>
 </navigation>

@@ -17,7 +17,7 @@ class MainViewModel:ViewModel() {
     var resultLiveData:LiveData<Boolean> =resultMutableLiveData;
 
 
-
+    //subscribe to the topic
     fun subscribeToNewTopic(topicInput: String, callback: TopicCallback) {
         FirebaseMessaging.getInstance().subscribeToTopic(topicInput)
             .addOnCompleteListener {

@@ -10,6 +10,7 @@ data class incident(
                     val generated_at: String,
                     val crime_type: String,
                     val officer_id: Int,
-                    val phone: Int,
+                    val phone: Long,
                     val status: String,
-                    val updated_at: String)
+                    val updated_at: String,
+                    val secret:String)

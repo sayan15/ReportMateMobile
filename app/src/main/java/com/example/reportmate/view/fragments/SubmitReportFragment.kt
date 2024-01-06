@@ -161,16 +161,28 @@ class SubmitReportFragment : Fragment(),BroadCastReceiver.LocationCallback {
             Log.d("LiveDataUpdate", "Place Title: $storedPlaceTitle,$latLng")
 
             if((binding.radioButtonOption1grp1.isChecked or binding.radioButtonOption2grp1.isChecked ) and (binding.radioButtonOption1grp2.isChecked or binding.radioButtonOption2grp2.isChecked ) ){
-                val finalData= FinalData(latLng,storedPlaceTitle.toString(),formattedDateTime)
-                val bundle = Bundle()
-                bundle.putParcelable("finalData", finalData)
-                navController= Navigation.findNavController(view)
-                navController.navigate(R.id.action_submitReportFragment_to_finalFragment,bundle)
+               if(latLng!=null){
+                   val finalData= FinalData(latLng,storedPlaceTitle.toString(),formattedDateTime)
+                   val bundle = Bundle()
+                   bundle.putParcelable("finalData", finalData)
+                   navController= Navigation.findNavController(view)
+                   navController.navigate(R.id.action_submitReportFragment_to_finalFragment,bundle)
+               }
+                else {
+                   Toast.makeText(requireContext(), "Unable to get your location.", Toast.LENGTH_SHORT)
+                       .show()
+               }
             }
             else{
                 Toast.makeText(requireContext(), "Please select options", Toast.LENGTH_SHORT).show()
             }
 
+        }
+
+        //go back
+        binding.backButton.setOnClickListener {
+            navController= Navigation.findNavController(view)
+            navController.navigate(R.id.action_submitReportFragment_to_welcomeFragment)
         }
     }
 
@@ -255,7 +267,7 @@ class SubmitReportFragment : Fragment(),BroadCastReceiver.LocationCallback {
         // Call the ViewModel function
         viewModel.getPlaceTitleFromLatLng(requireContext(), LatLng(latitude, longitude))
 
-        // Log the live data value (assuming your LiveData is of type String, adjust accordingly)
+        // Log the live data value LiveData is of type String
         viewModel.resultLiveData.observe(viewLifecycleOwner) { placeTitle ->
             Log.d("LiveDataUpdate", "Place Title: $placeTitle")
             storedPlaceTitle=placeTitle
